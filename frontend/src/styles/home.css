@@ -1,0 +1,58 @@
+.game-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+.box-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+.nameBox {
+    max-width: 90%;
+    text-align: center;
+}
+button {
+
+    color : black;
+}
+
+.foodImage {
+    min-width: 200px;
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+    border: 3px solid red;
+    --angle: 0deg;
+    width: 50vmin;
+    height: 50vmin;
+    border: 0.5rem solid;
+    border-image: linear-gradient(var(--angle), #000000, #fffb1b, #053bff) 1;
+    cursor : grab;
+  }
+.foodImage:hover{
+    animation: 3s rotate linear infinite;
+    transform: scale(1.05); 
+
+}
+
+@keyframes rotate {
+  to {
+    --angle: 360deg;
+  }
+}
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+.text-center{
+    text-align: center;
+}

@@ -1,0 +1,43 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+  margin : 0;
+  color: white;
+}
+body {
+  background-color: rgb(35, 34, 34);
+  width: 100%;
+  max-width: 125rem;
+  margin-inline: auto;
+}
+
+.App-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: calc(100vh - 2.6666666667rem);
+  width: min(90%, 70.5rem);
+
+}
+@media all and (min-width: 45em) {
+  .App-container {
+      min-height: calc(100vh - 5.3333333333rem)
+  }
+}
+
+.section{
+  padding: 2rem 0;
+  padding-top: 2rem;
+}
+@media (min-width: 40em) {
+    
+  body {
+      width: 70%;
+      height: 100vh;    
+  
+  }
+
+
+}
