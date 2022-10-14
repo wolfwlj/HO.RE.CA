@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './screens/Home';
 import "./styles/app.css";
+import Leaderboard from './screens/Leaderboard';
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
             <Routes>
 
               <Route path="/" element={<Home  />} />
-              
+              <Route path="/leaderboard" element={<Leaderboard  />} />
+
             </Routes>
         </div>
 

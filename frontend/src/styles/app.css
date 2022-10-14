@@ -11,6 +11,11 @@ body {
   width: 100%;
   max-width: 125rem;
   margin-inline: auto;
+  /* background-image: url("1170083.gif");
+  background-repeat: repeat-x;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: 20%; */
 }
 
 .App-container {
@@ -18,7 +23,6 @@ body {
   flex-direction: column;
   justify-content: space-between;
   min-height: calc(100vh - 2.6666666667rem);
-  width: min(90%, 70.5rem);
 
 }
 @media all and (min-width: 45em) {
@@ -40,4 +44,13 @@ body {
   }
 
 
+}
+
+.style-none{
+  text-decoration: none;
+  list-style: none;
+
+}
+.text-center{
+  text-align: center;
 }

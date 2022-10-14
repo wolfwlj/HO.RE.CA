@@ -34,7 +34,7 @@ button {
     width: 50vmin;
     height: 50vmin;
     border: 0.5rem solid;
-    border-image: linear-gradient(var(--angle), #000000, #fffb1b, #053bff) 1;
+    border-image: linear-gradient(var(--angle), #000000, #161616,#fffb1b, #393939) 1;
     cursor : grab;
   }
 .foodImage:hover{
