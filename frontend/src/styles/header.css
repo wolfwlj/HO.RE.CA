@@ -7,7 +7,7 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    width: 40%;
+    width: 60%;
     margin: 0 auto;
     margin-top: 2rem;
 
@@ -15,8 +15,11 @@
 .header-flex > h3{
     text-align: center;
 }
+.header-flex > h3:hover{
+    scale: 1.2;
+}
 .style-none{
     text-decoration: none;
     list-style: none;
-  
+    
   }

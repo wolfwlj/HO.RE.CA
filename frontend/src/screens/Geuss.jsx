@@ -1,20 +1,18 @@
 import { useState } from 'react'
 import "../styles/home.css"
 import ImageBox from '../components/game/ImageBox.jsx'
-const Home = () => {
+const Geuss = () => {
 
   const [score, setScore] = useState(0)
-
-
-
 
 
   return (
     <>
 
       <h1 className='text-center'>
-        Click the food you'd rather eat.
+        Which food do people like more?
       </h1>
+
       
       <div className='game-container'>
 
@@ -29,10 +27,10 @@ const Home = () => {
         </div>
 
       </div>
-      {/* <h1 className='text-center'> Score : {score} </h1> */}
+      <h1 className='text-center'> Score : {score} </h1>
 
     </>
   )
 }
 
-export default Home
+export default Geuss
