@@ -9,7 +9,7 @@ import { VoteMeal } from '../../proxies/VoteMeal'
 const ImageBox = (props) => {
 
     const [mealName, setMealName] = useState("")
-    const [mealCategory, setMealCategory] = useState("")
+    // const [mealCategory, setMealCategory] = useState("")
     const [mealImageURL, setMealImageURL] = useState("")
     const [mealID, setMealID] = useState("")
 
@@ -24,7 +24,7 @@ const ImageBox = (props) => {
             .then(function (response) {
                 
                 setMealName(response.data.Meal.Name)
-                setMealCategory(response.data.Meal.Category)
+                // setMealCategory(response.data.Meal.Category)
                 setMealImageURL(response.data.Meal.Image_url)
                 setMealID(response.data.Meal.Meal_id)
                 //  SaveMeal(

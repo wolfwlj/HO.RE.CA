@@ -20,7 +20,7 @@ const Leaderboard = () => {
         if(page === 0){
             setDisablePrev(true)
         }
-        if(page != 0 && page * 25 + 25 > count){
+        if(page !== 0 && page * 25 + 25 > count){
             setDisableNext(true)
         }   
 
@@ -68,10 +68,27 @@ const Leaderboard = () => {
     console.log(count)
   return (
     <>
+    
         <h1 className='text-center'>
             Leaderboard
         </h1>
-        {/* TODO : pagination */}
+
+        <div className='pagination'>
+            <div className='pagination-row1'>
+                <button className='pagination-button' onClick={handlePrev} disabled={disablePrev}>Prev</button>
+                <p>Page {page + 1}</p>
+
+                <button className='pagination-button' onClick={handleNext} disabled={disableNext}>Next</button>
+
+            </div>
+            <div className='pagination-row2'>
+                <p>Showing {offset + 1} to {offset + 25} of {count} meals</p>
+            </div>
+            {/* <p>total meals : {count}</p> */}
+        </div>
+
+
+
         <table className='lb-table'>
             <thead>
                 <tr>
@@ -83,7 +100,7 @@ const Leaderboard = () => {
             </thead>
             <tbody>
                 {orderedMeals.map((meal, index) => 
-                    <LbRow key={meal.Meal_id} rank={index+ 1 + offset} votes={meal.Votes} name={meal.Name} image={meal.Image_url}/>
+                    <LbRow key={meal.Meal_id} rank={index + 1 + offset} votes={meal.Votes} name={meal.Name} image={meal.Image_url}/>
                 )}
 
 
@@ -93,11 +110,17 @@ const Leaderboard = () => {
         </table>       
         
         <div className='pagination'>
-            <button disabled={disablePrev} className='btn btn-primary' onClick={handlePrev}>Prev</button>
-            <button disabled={disableNext} className='btn btn-primary' onClick={handleNext}>Next</button>
-            <p>current page : {page + 1}</p>
-            <p>current meal rank range : {offset} - {offset + 25}</p>
-            <p>total meals : {count}</p>
+            <div className='pagination-row1'>
+                <button className='pagination-button' onClick={handlePrev} disabled={disablePrev}>Prev</button>
+                <p>Page {page + 1}</p>
+
+                <button className='pagination-button' onClick={handleNext} disabled={disableNext}>Next</button>
+
+            </div>
+            <div className='pagination-row2'>
+                <p>Showing {offset + 1} to {offset + 25} of {count} meals</p>
+            </div>
+            {/* <p>total meals : {count}</p> */}
         </div>
         
     </>

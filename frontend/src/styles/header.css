@@ -2,18 +2,24 @@
     
     padding: 10px;
     text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap : wrap;
+
+
 }
 .header-flex {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    width: 60%;
-    margin: 0 auto;
-    margin-top: 2rem;
+    flex-wrap : wrap;
+    width: 100%;
 
 }
-.header-flex > h3{
+.header-flex > *{
     text-align: center;
+    margin: 10px;
 }
 .header-flex > h3:hover{
     scale: 1.2;

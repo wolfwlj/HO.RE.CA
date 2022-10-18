@@ -6,7 +6,6 @@
     font-size: 14px;
     color: #333;
     margin: 0 auto;
-    margin-top: 20px;
     margin-bottom: 20px;
 }
 .lb-table thead tr{
@@ -52,4 +51,58 @@
     color: #fff;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.pagination {
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+
+
+}
+.pagination-row1{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    align-items: center;
+
+}
+.pagination-row1 > p {
+    margin: 0 10px;
+    font-size: 20px;
+    font-weight: 500;
+    color: #fff;
+}
+.pagination-row2{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+.pagination-row2 > p {
+    font-size: 0.8em;
+}
+.pagination-button {
+    background-color: #000000;
+    border: none;
+    color: white;
+    padding: 10px 21.33px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+
+}
+.pagination-button:hover {
+    background-color: #131010;
+}
+.pagination-button:disabled {
+    background-color: #131010;
+    color: white;
+    cursor: not-allowed;
 }

@@ -39,14 +39,14 @@ const Header = () => {
   return (
     <div className='header'>
         
-            <h1> 
-              <a className='style-none'>
-                  HO . RE . CA
-              </a>
-            </h1>
+
             <div className='header-flex'>
 
-
+                <h1> 
+                  <a className='style-none'>
+                      HO . RE . CA
+                  </a>
+                </h1>
                 <h3>
                     <a style={
                       SELECTED.home ? SELECTED_STYLE : null
