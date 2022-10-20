@@ -56,3 +56,14 @@ button {
 .text-center{
     text-align: center;
 }
+
+.bigFont{
+    font-size: 4rem;
+}
+.img-box{
+  width: 50%;
+  margin: 0 auto;
+}
+.scores {
+    
+}

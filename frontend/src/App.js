@@ -18,9 +18,9 @@ function App() {
         <div className="section">
             <Routes>
 
-              <Route path="/" element={<Home  />} />
+              <Route path="/" element={<Geuss  />} />
               <Route path="/leaderboard" element={<Leaderboard  />} />
-              <Route path="/geuss" element={<Geuss  />} />
+              <Route path="/geuss" element={<Home/>} />
 
             </Routes>
         </div>

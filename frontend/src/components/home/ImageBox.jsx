@@ -51,6 +51,7 @@ const ImageBox = (props) => {
     
     function handleClick(){
         props.setScore(props.score + 1)
+        props.setLoading(true)
         setValue (value  + 1)
         console.log(`clicked : ${props.boxNum}`)
         VoteMeal(mealID)
