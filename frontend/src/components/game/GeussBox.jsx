@@ -3,10 +3,11 @@ import axios from 'axios'
 import "../../styles/home.css"
 // import { SaveMeal } from '../../proxies/SaveMeal'
 import { VoteMeal } from '../../proxies/VoteMeal'
-
-//www.themealdb.com/api/json/v1/1/random.php
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 const ImageBox = (props) => {
+    const MySwal = withReactContent(Swal)
 
     const [mealName, setMealName] = useState("")
     const [mealImageURL, setMealImageURL] = useState("")
@@ -16,11 +17,11 @@ const ImageBox = (props) => {
     const [side, setSide] = useState(false)
     const [sideString, setSideString] = useState("")
 
-    // This will launch only if propName value has chaged.
-    useEffect(() => { 
-        setValue(props.score) 
+    // // This will launch only if propName value has chaged.
+    // useEffect(() => { 
+    //     setValue(props.score) 
 
-    }, [props.score]);
+    // }, [props.score]);
 
     useEffect(() => {
 
@@ -73,30 +74,38 @@ const ImageBox = (props) => {
 
 
 
-    }, [value]) ;
+    }, [props.score]) ;
 
 
-    function sendLeft(leftVotes){
-        props.setLeftVotes(leftVotes)
-    }
-    function sendRight(rightVotes){
-        props.setRightVotes(rightVotes)
-    }
+    // function sendLeft(leftVotes){
+    //     props.setLeftVotes(leftVotes)
+    // }
+    // function sendRight(rightVotes){
+    //     props.setRightVotes(rightVotes)
+    // }
     function handleClick(){
-        // props.setScore(props.score + 1)
 
-        props.setChoice(sideString)
-        setValue (value  + 1)
-        VoteMeal(mealID)
+
+
+
+
+
+
+        console.log("clicked")
+            props.setChoice(sideString)
+
+
+
     }    
 
   return (
     <>
         <h2 className='nameBox'>{mealName}</h2>
         <br></br>
-        <img onClick={() =>handleClick(mealID)} className="foodImage" src={mealImageURL} alt="food pic" />
+
+        <img onClick={() =>handleClick()} className="foodImage" src={mealImageURL} alt="food pic" />
         <br></br>
-        <h2> Votes : {side ? mealVotes : '???'}</h2>
+ 
         {/* '???' */}
     </>
   )

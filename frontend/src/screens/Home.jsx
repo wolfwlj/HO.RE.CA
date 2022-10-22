@@ -36,11 +36,11 @@ const Home = () => {
               setOne("")
               setTwo("")
               setImgPosition("left")
-            }, 1000);
+            }, 500);
 
-      }, 1000)
+      }, 500)
 
-    }, 1000);
+    }, 500);
     return () => clearTimeout(timer);
 
   }, [score]);

@@ -64,6 +64,53 @@ button {
   width: 50%;
   margin: 0 auto;
 }
-.scores {
-    
+#swalBoxleft{
+  width: 60vmin;
+  height: 60vmin;
+  position: absolute;
+  pointer-events: none;
+  cursor : grab;
+}
+
+#swalBoxleft .swal2-container {
+
+
+
+  position: inherit; 
+  left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto; 
+
+}
+#swalBoxright{
+  width: 60vmin;
+  height: 60vmin;
+  position: absolute;
+  pointer-events: none;
+  cursor : grab;
+
+}
+
+#swalBoxright .swal2-container {
+
+
+
+  position: inherit; 
+  left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto; 
+
+
+}
+.wonVotes{
+    font-size: 2rem;
+    color: #00ff77;
+    text-shadow: 0 0 0.5rem #e4ffec;
+}
+.lostVotes {
+    font-size: 2rem;
+    color: #ff0000;
+    text-shadow: 0 0 0.5rem #0f0f0f;
 }

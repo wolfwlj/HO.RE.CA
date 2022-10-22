@@ -51,7 +51,7 @@ const Header = () => {
                     <a style={
                       SELECTED.home ? SELECTED_STYLE : null
                     } 
-                    className='style-none'  href='/'>Vote on food</a>
+                    className='style-none'  href='/'>Geuss the preffered food</a>
                 </h3>
 
                 <h3> 
@@ -66,7 +66,7 @@ const Header = () => {
                     style={
                       SELECTED.geuss ? SELECTED_STYLE : null
                     } 
-                    className='style-none' href='/geuss'>Geuss the preffered food</a> 
+                    className='style-none' href='/vote'>Vote on food</a> 
                 </h3>  
             </div>
     </div>
