@@ -60,7 +60,12 @@ const Header = () => {
                     } 
                       className='style-none' href='/leaderboard'>Food Leaderboard</a> 
                 </h3>  
-
+                <h3> 
+                <a style={
+                      SELECTED.leaderboard ? SELECTED_STYLE : null
+                    } 
+                      className='style-none' href='/leaderboard'>Player Leaderboard</a> 
+                </h3>  
                 <h3> 
                     <a 
                     style={

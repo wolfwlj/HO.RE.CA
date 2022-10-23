@@ -5,7 +5,7 @@ import GeussBox from '../components/game/GeussBox.jsx'
 // import withReactContent from 'sweetalert2-react-content'
 import { SwalLoseComponentLeft, SwalWinComponentLeft, SwalLoseComponentRight, SwalWinComponentRight } from '../components/game/SwalComponents'
 // import img from '../styles/source-1.gif'
-
+import FadeInOut from "../components/game/FadeInFadeOut";
 
 
 
@@ -29,10 +29,26 @@ const Geuss = () => {
   const [leftWon, setLeftWon] = useState(false)
   const [rightWon, setRightWon] = useState(false)
 
+  const [lostGame, setLostGame] = useState(false)
 
 
+  const extraStyles = {
+    position: "absolute",
+    top: "-25%",
+    left: "85%",
+    color: "#24fc03",
+    fontSize: "1.4rem",
+    fontWeight: "bold",
+  };
+  const extraStylesLost = {
+    position: "absolute",
+    top: "-25%",
+    left: "85%",
+    color: "#fc0303",
+    fontSize: "1.4rem",
+    fontWeight: "bold",
 
-
+  };
 
 
 
@@ -73,7 +89,7 @@ const Geuss = () => {
           setWon(false)
           setFinished(true)
           setRightWon(true)
-
+          setLostGame(true)
           setTimeout(() => {
 
             setScore(0)
@@ -86,6 +102,7 @@ const Geuss = () => {
             setSwalLeftState(false)
             setWon(false)
             setRightWon(false)
+            setLostGame(false)
 
             setChoice("")
           }, 2100);
@@ -128,6 +145,7 @@ const Geuss = () => {
         setWon(false)
         setFinished(true)
         setLeftWon(true)
+        setLostGame(true)
 
         setTimeout(() => {
 
@@ -144,6 +162,7 @@ const Geuss = () => {
           setSwalRightState(false)
           setWon(false)
           setLeftWon(false)
+          setLostGame(false)
 
           setChoice("")
         }, 2100);
@@ -180,14 +199,19 @@ const Geuss = () => {
 
             </div>
         </div>
-        <div className='box-container scores'>
+        <div className='scores'>
 
-          <h1 className='text-center'> Score : {score} </h1>
- 
-          <h1 className='text-center'> HighScore : {highscore} </h1>
+
+            <h1 className='text-center'> High Score : {highscore} </h1>
+            <div className='score-container'>
+              <h1 className='text-center'> Score : {score}</h1>
+              <FadeInOut show={won} duration={500} style={extraStyles}> + 1 </FadeInOut>
+              <FadeInOut show={lostGame} duration={500} style={extraStylesLost}> - {score} </FadeInOut>
+            </div>
 
 
         </div>
+
         <div className='box-container'>
 
             <GeussBox boxSide={"right"} setScore={setScore} score={score}  setRightVotes={setRightVotes} setChoice={setChoice}/>
@@ -202,7 +226,6 @@ const Geuss = () => {
         </div>
 
       </div>
-
 
     </>
   )

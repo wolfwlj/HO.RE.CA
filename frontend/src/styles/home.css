@@ -1,7 +1,6 @@
 .game-container{
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: center;
     width: 100%;
     margin-top: 3rem;
@@ -113,4 +112,23 @@ button {
     font-size: 2rem;
     color: #ff0000;
     text-shadow: 0 0 0.5rem #0f0f0f;
+}
+
+.scores{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 50%;
+  height: 26vh;
+  margin-top: 3rem;
+
+}
+.score-container{
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  width:12vw; 
+  position: relative;
 }
