@@ -3,6 +3,7 @@ package main
 import (
 	"HORECA/controllers"
 	"HORECA/initializers"
+	"HORECA/middleware"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
@@ -37,6 +38,28 @@ func main() {
 		// router.PUT("/room/:id", middleware.RequireAuth, controllers.RoomUpdate)
 		// router.DELETE("/room/:id", middleware.RequireAuth, controllers.RoomDelete)
 	// ------- End of lessen routes -----------------------------------------------
+
+
+
+
+	// auth router : --------------------------------------------------------------
+	router.POST("/signup", controllers.Signup)
+	router.POST("/login", controllers.Login)
+
+	// protected auth routes :
+	router.GET("/validate", middleware.RequireAuth, controllers.Validate)
+	router.POST("/logout", middleware.RequireAuth, controllers.Logout)
+
+	router.POST("/sendhighscore", middleware.RequireAuth, controllers.Highscore)
+	// router.POST("/gameplayed", middleware.RequireAuth, controllers.Played)
+
+	//-------------------End of auth routes----------------------------------------
+
+
+
+
+
+
 	router.Run(":9090")
 
 }

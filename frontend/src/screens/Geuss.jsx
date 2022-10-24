@@ -6,6 +6,8 @@ import GeussBox from '../components/game/GeussBox.jsx'
 import { SwalLoseComponentLeft, SwalWinComponentLeft, SwalLoseComponentRight, SwalWinComponentRight } from '../components/game/SwalComponents'
 // import img from '../styles/source-1.gif'
 import FadeInOut from "../components/game/FadeInFadeOut";
+import { SendHighscore } from '../proxies/SendHighscore.jsx'
+import { SendGamesPlayed } from '../proxies/SendGamesPlayed.jsx'
 
 
 
@@ -13,7 +15,7 @@ import FadeInOut from "../components/game/FadeInFadeOut";
 
 
 
-const Geuss = () => {
+const Geuss = (props) => {
   // const MySwal = withReactContent(Swal)
 
   const [score, setScore] = useState(0)
@@ -96,6 +98,11 @@ const Geuss = () => {
             console.log("lose")
             if (score > highscore) {
               setHighscore(score)
+
+              if(props.userId != null){
+                SendHighscore(score, props.userId)
+                // SendGamesPlayed(props.userId)
+              }
             }
 
             setFinished(false)
@@ -156,6 +163,10 @@ const Geuss = () => {
 
           if (score > highscore) {
             setHighscore(score)
+            if(props.userId != 0){
+              SendHighscore(score, props.userId)
+              // SendGamesPlayed(props.userId)
+            }
           }
 
           setFinished(false)
@@ -174,7 +185,7 @@ const Geuss = () => {
 
   }, [choice])
   
-  
+  console.log(props.userId)
   return (
     <>
 
@@ -183,6 +194,11 @@ const Geuss = () => {
       </h1>
 
     {/* <img src={img} alt="" /> */}
+      {finished ? (
+              <div className="transparent-overlay">
+              </div>
+      ) : null}        
+        
 
       <div className='game-container'>
 
@@ -202,7 +218,14 @@ const Geuss = () => {
         <div className='scores'>
 
 
-            <h1 className='text-center'> High Score : {highscore} </h1>
+            <h1 className='text-center'> High Score : {highscore} 
+            
+            {props.userId == 0 ? <p className='small-text'> (log in to save highscore)</p> : null}
+            
+            </h1>
+            
+             
+           
             <div className='score-container'>
               <h1 className='text-center'> Score : {score}</h1>
               <FadeInOut show={won} duration={500} style={extraStyles}> + 1 </FadeInOut>

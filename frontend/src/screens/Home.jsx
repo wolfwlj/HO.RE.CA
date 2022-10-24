@@ -12,7 +12,27 @@ const Home = () => {
   const [imgPosition, setImgPosition] = useState("left")
   const [firstLoad, setFirstLoad] = useState(true)
 
+  const ServingFood = () => {
+    return (
+      <>
+        <h1 className='text-center bigFont'> Serving food in 3...{two}{one}</h1>
+        {/* <h1 className='text-center bigFont'> Serving food in 3...2...1...</h1> */}
 
+        <br></br>
+        {/* <h1 className='text-center'>{countdown}</h1> */}
+        <br></br> 
+   
+
+        <div className='img-box'>
+          <ImageComponent imgPosition={imgPosition}/>
+        </div>
+
+
+          
+      </>
+
+    )
+  }
   
   useEffect(() => {
 
@@ -76,27 +96,23 @@ const Home = () => {
     )
   } else {
 
-
-
     return (
       <>
-        <h1 className='text-center bigFont'> Serving food in 3...{two}{one}</h1>
-        {/* <h1 className='text-center bigFont'> Serving food in 3...2...1...</h1> */}
 
-        <br></br>
-        {/* <h1 className='text-center'>{countdown}</h1> */}
-        <br></br> 
-   
+        <h1 className='text-center'>
+          Click the food you'd rather eat.
+        </h1>
+        
 
-        <div className='img-box'>
-          <ImageComponent imgPosition={imgPosition}/>
-        </div>
+        <ServingFood/>
 
 
-          
+
+
       </>
-
     )
+
+
 
   }
 }

@@ -1,10 +1,20 @@
 import React from 'react'
 import "../styles/header.css"
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate} from 'react-router-dom'
 
+const Header = (props) => {
+  let navigate = useNavigate()
 
-const Header = () => {
+  const logoutHandler = async () => {
+    await fetch('http://localhost:9090/logout', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      credentials: 'include',
+    })
 
+    props.setUsernameEmit('')
+    navigate('/login')
+}
   const location = useLocation()
   console.log(location.pathname)
 
@@ -64,7 +74,7 @@ const Header = () => {
                 <a style={
                       SELECTED.leaderboard ? SELECTED_STYLE : null
                     } 
-                      className='style-none' href='/leaderboard'>Player Leaderboard</a> 
+                      className='style-none' href='/userlb'>Player Leaderboard</a> 
                 </h3>  
                 <h3> 
                     <a 
@@ -73,6 +83,30 @@ const Header = () => {
                     } 
                     className='style-none' href='/vote'>Vote on food</a> 
                 </h3>  
+
+                {props.usernameEmit ? (
+                  
+                  <h3>
+                    <a 
+                      style={
+                        SELECTED.geuss ? SELECTED_STYLE : null
+                      } 
+                    
+                    className='style-none' onClick={logoutHandler}>Logout {props.usernameEmit}</a>
+                  </h3>
+                      
+                )
+                
+                : (
+                  
+                  <h3> 
+                      <a 
+                      style={
+                        SELECTED.geuss ? SELECTED_STYLE : null
+                      } 
+                      className='style-none' href='/login'>Login/Sign up</a> 
+                  </h3>  
+                )}
             </div>
     </div>
   )
