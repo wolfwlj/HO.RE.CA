@@ -8,7 +8,7 @@ import { SwalLoseComponentLeft, SwalWinComponentLeft, SwalLoseComponentRight, Sw
 import FadeInOut from "../components/game/FadeInFadeOut";
 import { SendHighscore } from '../proxies/SendHighscore.jsx'
 import { SendGamesPlayed } from '../proxies/SendGamesPlayed.jsx'
-
+import { GetHighscore } from '../proxies/GetHighscore.jsx'
 
 
 
@@ -17,7 +17,7 @@ import { SendGamesPlayed } from '../proxies/SendGamesPlayed.jsx'
 
 const Geuss = (props) => {
   // const MySwal = withReactContent(Swal)
-
+  console.log(props.userHighScore)
   const [score, setScore] = useState(0)
   const [leftVotes, setLeftVotes] = useState(0)
   const [rightVotes, setRightVotes] = useState(0)
@@ -101,11 +101,16 @@ const Geuss = (props) => {
 
               if(props.userId != null){
                 SendHighscore(score, props.userId)
-                // SendGamesPlayed(props.userId)
+                .then(() => {
+                  setHighscore(score)
+                })
+                SendGamesPlayed(props.userId)
               }
             }
 
             setFinished(false)
+            SendGamesPlayed(props.userId)
+
             setSwalLeftState(false)
             setWon(false)
             setRightWon(false)
@@ -165,10 +170,14 @@ const Geuss = (props) => {
             setHighscore(score)
             if(props.userId != 0){
               SendHighscore(score, props.userId)
-              // SendGamesPlayed(props.userId)
+              .then(() => {
+                setHighscore(score)
+              })
+
+              SendGamesPlayed(props.userId)
             }
           }
-
+          SendGamesPlayed(props.userId)
           setFinished(false)
           setSwalRightState(false)
           setWon(false)
@@ -184,8 +193,26 @@ const Geuss = (props) => {
     }  
 
   }, [choice])
+
   
-  console.log(props.userId)
+
+  useEffect(() => {
+    if(props.userId != 0){
+      console.log("send highscore")
+      GetHighscore(props.userId)
+
+        .then((data) => {
+          console.log(data)
+          if(data.Highscore != null){
+            setHighscore(data.Highscore)
+          }
+      })
+    }
+  }, [props.userId])
+
+
+
+
   return (
     <>
 

@@ -10,7 +10,6 @@ const Home = () => {
   const [two, setTwo] = useState("")
   const [one, setOne] = useState("")
   const [imgPosition, setImgPosition] = useState("left")
-  const [firstLoad, setFirstLoad] = useState(true)
 
   const ServingFood = () => {
     return (

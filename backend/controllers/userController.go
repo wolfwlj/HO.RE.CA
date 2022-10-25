@@ -174,3 +174,64 @@ func Highscore (c *gin.Context) {
 		"body": body,
 	})
 }
+
+func Played (c *gin.Context) {
+	var body struct {
+		Id int
+	}
+	if c.Bind(&body) != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "Failed to parse request body",
+		})
+		return
+	}
+	result := initializers.DB.Raw("UPDATE users SET games_played = games_played + 1 WHERE id = ?", body.Id).Scan(&body)
+
+	if result.Error != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "Failed to update games played",
+		})
+		return
+	}
+
+
+	c.JSON(http.StatusOK, gin.H{
+		"id": body.Id,
+		"body": body,
+	})
+}
+
+func GetHighscore(c *gin.Context) {
+	id := c.Param("id")
+
+
+	var user models.User
+	initializers.DB.Raw("SELECT highscore FROM users Where id = ?", id).Scan(&user)
+
+	c.JSON(http.StatusOK, gin.H{
+		"Highscore": user.Highscore,
+	})
+	
+}
+
+
+
+func GetUserRankings(c *gin.Context) {
+
+	offset := c.Param("offset")
+
+
+	var User []models.User
+	var count int64
+
+	initializers.DB.Model(&models.User{}).Count(&count)
+
+	initializers.DB.Raw("SELECT * FROM users ORDER BY highscore DESC LIMIT 25 OFFSET ?", offset).Scan(&User)
+
+	c.JSON(200, gin.H{
+		"User": User,
+		"count": count,
+
+	})
+
+}

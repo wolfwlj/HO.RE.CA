@@ -1,26 +1,26 @@
 import { useState, useEffect} from 'react'
 import "../styles/app.css"
 import "../styles/leaderboard.css"
-import LbRow from '../components/leaderboard/LbRow'
-import { GetMeals } from '../proxies/GetMeals'
+import UserLbRow from '../components/leaderboard/UserLbRow'
+import { GetRankings } from '../proxies/GetUserRanking'
 
 const UserLeaderboard = () => {
 
-    const [orderedMeals, setOrderedMeals] = useState([])
+    const [orderedUsers, setOrderedUsers] = useState([])
     const [count, setCount] = useState(0)
     const [page, setPage] = useState(0)
     const [offset, setOffset] = useState(0)
- 
+    
     const [disableNext, setDisableNext] = useState(false)
     const [disablePrev, setDisablePrev] = useState(true)
 
 
-    const fetchOrderedMeals = () => {
+    const fetchRankings = () => {
         console.log(page)
         if(page === 0){
             setDisablePrev(true)
         }
-        if(page !== 0 && page * 25 + 25 > count){
+        if(page !== 0 && page * 25 + 25 >= count || count < 25) {
             setDisableNext(true)
         }   
 
@@ -28,16 +28,17 @@ const UserLeaderboard = () => {
 
         let offset = page * 25
 
-        GetMeals(offset)
+        GetRankings(offset)
         .then((data) => {
-            setOrderedMeals(data.Meal)
+            console.log(data)
+            setOrderedUsers(data.User)
             setCount(data.count)
             setOffset(offset)
         })
     }
 
     useEffect(() => {
-        fetchOrderedMeals()
+        fetchRankings()
       }, [page]);
 
     const handleNext = () => {
@@ -60,17 +61,14 @@ const UserLeaderboard = () => {
 
 
     }
-    // const test = ()     => {
-    //     console.log(page)
 
-    // }
     
     console.log(count)
   return (
     <>
     
         <h1 className='text-center'>
-        UserLeaderboard
+        Player Leaderboard
         </h1>
 
         <div className='pagination'>
@@ -82,7 +80,7 @@ const UserLeaderboard = () => {
 
             </div>
             <div className='pagination-row2'>
-                <p>Showing {offset + 1} to {offset + 25} of {count} meals</p>
+                <p>Showing {offset + 1} to {offset + 25} of {count} players</p>
             </div>
             {/* <p>total meals : {count}</p> */}
         </div>
@@ -93,14 +91,18 @@ const UserLeaderboard = () => {
             <thead>
                 <tr>
                     <th> <p className='lb-text text-center'>Rank</p></th>
-                    <th> <p className='lb-text text-center'>Votes</p></th>
-                    <th> <p className='lb-text text-center'>Food Name</p></th>
-                    <th> <p className='lb-text text-center'>Food image</p></th>
+                    <th> <p className='lb-text text-center'>Highscore</p></th>
+                    <th> <p className='lb-text text-center'>Games Played</p></th>
+                    <th> <p className='lb-text text-center'>Username</p></th>
                 </tr>
             </thead>
             <tbody>
-                {orderedMeals.map((meal, index) => 
-                    <LbRow key={meal.Meal_id} rank={index + 1 + offset} votes={meal.Votes} name={meal.Name} image={meal.Image_url}/>
+                {orderedUsers.map((user, index) => 
+                    <UserLbRow  key={user.ID} 
+                            rank={index + 1 + offset} 
+                            Highscore={user.Highscore} 
+                            GamesPlayed={user.GamesPlayed} 
+                            Username={user.Username} />
                 )}
 
 
@@ -118,7 +120,7 @@ const UserLeaderboard = () => {
 
             </div>
             <div className='pagination-row2'>
-                <p>Showing {offset + 1} to {offset + 25} of {count} meals</p>
+                <p>Showing {offset + 1} to {offset + 25} of {count} players</p>
             </div>
             {/* <p>total meals : {count}</p> */}
         </div>

@@ -4,6 +4,7 @@ import (
 	"HORECA/controllers"
 	"HORECA/initializers"
 	"HORECA/middleware"
+	"fmt"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
@@ -16,6 +17,11 @@ func init() {
 }
 func main() {
 	router := gin.Default()
+
+
+
+
+
 	router.Use(cors.New(cors.Config{
 		// AllowOrigins: []string{"https://movie.wolfolthuis.com"},
 		AllowOrigins: []string{"http://localhost:3000"},
@@ -41,17 +47,27 @@ func main() {
 
 
 
+	//make a test route
+	// router.GET("/test", func(c *gin.Context) {
+	// 	c.JSON(200, gin.H{
+	// 		"message": "test",
+	// 	})
+	// })
 
 	// auth router : --------------------------------------------------------------
 	router.POST("/signup", controllers.Signup)
 	router.POST("/login", controllers.Login)
+
+	router.GET("/rankings/:offset", controllers.GetUserRankings)
 
 	// protected auth routes :
 	router.GET("/validate", middleware.RequireAuth, controllers.Validate)
 	router.POST("/logout", middleware.RequireAuth, controllers.Logout)
 
 	router.POST("/sendhighscore", middleware.RequireAuth, controllers.Highscore)
-	// router.POST("/gameplayed", middleware.RequireAuth, controllers.Played)
+	router.POST("/gameplayed", middleware.RequireAuth, controllers.Played)
+
+	router.GET("/highscore/:id", controllers.GetHighscore)
 
 	//-------------------End of auth routes----------------------------------------
 
@@ -59,7 +75,7 @@ func main() {
 
 
 
-
+	fmt.Println("dsadas")
 	router.Run(":9090")
 
 }

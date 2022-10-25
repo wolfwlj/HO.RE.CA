@@ -106,6 +106,7 @@ func RandomMeal(c *gin.Context) {
 
 
 	initializers.DB.Order("RAND()").First(&Meal)
+	
 	c.JSON(200, gin.H{
 		"Meal": Meal,
 	})
@@ -121,6 +122,7 @@ func GetMeals(c *gin.Context) {
 	var Meal []models.Meal
 	var count int64
 
+	
 	initializers.DB.Model(&models.Meal{}).Count(&count)
 
 	initializers.DB.Raw("SELECT * FROM meals ORDER BY votes DESC LIMIT 25 OFFSET ?", offset).Scan(&Meal)

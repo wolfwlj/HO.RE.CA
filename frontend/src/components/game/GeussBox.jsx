@@ -1,13 +1,9 @@
 import {useState, useEffect } from 'react'
 import axios from 'axios'
 import "../../styles/home.css"
-// import { SaveMeal } from '../../proxies/SaveMeal'
-import { VoteMeal } from '../../proxies/VoteMeal'
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
+
 
 const ImageBox = (props) => {
-    const MySwal = withReactContent(Swal)
 
     const [mealName, setMealName] = useState("")
     const [mealImageURL, setMealImageURL] = useState("")
@@ -106,7 +102,7 @@ const ImageBox = (props) => {
         <img onClick={() =>handleClick()} className="foodImage" src={mealImageURL} alt="food pic" />
         <br></br>
  
-        {/* '???' */}
+  
     </>
   )
 }
