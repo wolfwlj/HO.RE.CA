@@ -245,16 +245,16 @@ const Geuss = (props) => {
         <div className='scores'>
 
 
-            <h1 className='text-center'> High Score : {highscore} 
+            <h1 className='text-center scoreText'> High Score : {highscore} 
             
-            {props.userId == 0 ? <p className='small-text'> (log in to save highscore)</p> : null}
+            {props.userId == 0 ? <p className='small-text'> <a className='no-style' href='/login'>(log in to save highscore)</a></p> : null}
             
             </h1>
             
              
            
             <div className='score-container'>
-              <h1 className='text-center'> Score : {score}</h1>
+              <h1 className='text-center scoreText'> Score : {score}</h1>
               <FadeInOut show={won} duration={500} style={extraStyles}> + 1 </FadeInOut>
               <FadeInOut show={lostGame} duration={500} style={extraStylesLost}> - {score} </FadeInOut>
             </div>

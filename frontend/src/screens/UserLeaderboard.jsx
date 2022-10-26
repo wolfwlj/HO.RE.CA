@@ -24,8 +24,6 @@ const UserLeaderboard = () => {
             setDisableNext(true)
         }   
 
-
-
         let offset = page * 25
 
         GetRankings(offset)
@@ -43,23 +41,13 @@ const UserLeaderboard = () => {
 
     const handleNext = () => {
         setPage(page + 1)
-
-
         setDisablePrev(false)
-
-
-
     }
     const handlePrev = () => {
         if(page > 0){
-
             setPage(page -1 )
- 
         }
-
         setDisableNext(false)
-
-
     }
 
     

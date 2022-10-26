@@ -22,23 +22,45 @@ const Header = (props) => {
   var SELECTED = {
     home: false,
     leaderboard: false,
-    game: false
+    userlb: false,
+    vote: false,
+    login: false,
   }
 
   if (location.pathname === "/"){
     SELECTED.home = true
     SELECTED.leaderboard = false
-    SELECTED.game = false
-
+    SELECTED.userlb = false
+    SELECTED.vote = false
+    SELECTED.login = false
   } else if (location.pathname === "/leaderboard"){
     SELECTED.leaderboard = true
     SELECTED.home = false
-    SELECTED.game = false
-  } else if (location.pathname === "/geuss"){
-    SELECTED.geuss = true
+    SELECTED.userlb = false
+    SELECTED.vote = false
+    SELECTED.login = false
+  } else if (location.pathname === "/userlb"){
+    SELECTED.userlb = true
+
     SELECTED.leaderboard = false
     SELECTED.home = false
+    SELECTED.vote = false
+    SELECTED.login = false
+  } else if (location.pathname === "/vote"){
+    SELECTED.vote = true
+    SELECTED.leaderboard = false
+    SELECTED.home = false
+    SELECTED.userlb = false
+    SELECTED.login = false
+  } else if (location.pathname === "/login"){
+    SELECTED.login = true
+    SELECTED.vote = false
+    SELECTED.leaderboard = false
+    SELECTED.home = false
+    SELECTED.userlb = false
+
   }
+
 
 
 
@@ -72,14 +94,14 @@ const Header = (props) => {
                 </h3>  
                 <h3> 
                 <a style={
-                      SELECTED.leaderboard ? SELECTED_STYLE : null
+                      SELECTED.userlb ? SELECTED_STYLE : null
                     } 
                       className='style-none' href='/userlb'>Player Leaderboard</a> 
                 </h3>  
                 <h3> 
                     <a 
                     style={
-                      SELECTED.geuss ? SELECTED_STYLE : null
+                      SELECTED.vote ? SELECTED_STYLE : null
                     } 
                     className='style-none' href='/vote'>Vote on food</a> 
                 </h3>  
@@ -89,7 +111,7 @@ const Header = (props) => {
                   <h3>
                     <a 
                       style={
-                        SELECTED.geuss ? SELECTED_STYLE : null
+                        SELECTED.login ? SELECTED_STYLE : null
                       } 
                     
                     className='style-none' onClick={logoutHandler}>Logout {props.usernameEmit}</a>
@@ -102,7 +124,7 @@ const Header = (props) => {
                   <h3> 
                       <a 
                       style={
-                        SELECTED.geuss ? SELECTED_STYLE : null
+                        SELECTED.login ? SELECTED_STYLE : null
                       } 
                       className='style-none' href='/login'>Login/Sign up</a> 
                   </h3>  

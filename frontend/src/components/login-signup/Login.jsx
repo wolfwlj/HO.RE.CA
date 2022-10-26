@@ -1,9 +1,12 @@
 import { useState } from 'react'
 import { useNavigate  } from 'react-router'
-    
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'    
 
 
 const LoginScreen = (props) => {
+const MySwal = withReactContent(Swal)
+
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
@@ -11,7 +14,21 @@ const LoginScreen = (props) => {
 
     const submitHandler = async (e) => {
         e.preventDefault()
-        
+        if (username === '' || password === '' ) {
+            MySwal.fire({
+                title: 'One or more fields are empty',
+                icon: 'error',
+                timerProgressBar: true,
+                timer: 2000,
+                position: 'center',
+                background: 'rgb(35, 34, 34)',
+                showConfirmButton: false,
+                width: 400,
+                color : 'white',
+                allowOutsideClick: true,
+            })
+            return
+        }
         const response = await fetch('http://localhost:9090/login', {
         // const response = await fetch('https://gin-production-6435.up.railway.app/login', {
             method: 'POST',
@@ -22,13 +39,37 @@ const LoginScreen = (props) => {
                 'Password' : password,
             
             })
-        })
+        }).catch((err) => {
+            console.log(err)
+            MySwal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+                footer: '<a href="">Why do I have this issue?</a>'
+              })        
+            })
         const data = await response.json()
-        props.setUsernameEmit(data.Username)
 
 
 
-        navigate('/')
+        if (data.Username) {
+            props.setUsernameEmit(data.Username)
+
+            navigate('/')
+        } else {
+            MySwal.fire({
+                title: 'Wrong Username or Password',
+                icon: 'error',
+                timerProgressBar: true,
+                timer: 2000,
+                position: 'center',
+                background: 'rgb(35, 34, 34)',
+                showConfirmButton: false,
+                width: 400,
+                color : 'white',
+                allowOutsideClick: true,
+            })
+        }
     }
 
 
@@ -36,12 +77,12 @@ const LoginScreen = (props) => {
 
   return (
     <>
-        <h1>Sign Up</h1>
+        <h1 className='text-center'>Login</h1>
         
 
 
-        <form onSubmit={submitHandler}>
-            <div className="mb-3" controlId="Username">
+        <form className="authForm" onSubmit={submitHandler}>
+            <div className="inputDiv" controlId="Username">
                 <label>Username</label>
 
                 <input type="Username" placeholder="Enter your Username" 
@@ -50,7 +91,7 @@ const LoginScreen = (props) => {
             </div>
 
 
-            <div className="mb-3" controlId="Password">
+            <div className="inputDiv" controlId="Password">
                 <label>Password</label>
                 <input type="password" placeholder="Password" 
                     value={password} onChange={(e) => setPassword(e.target.value)}
