@@ -1,6 +1,6 @@
 Higher/Lower food website
 (geuss which food has more votes)
-
+Link : https://food.wolfolthuis.com/
 This project is a "mini game" website where you geuss which food has more votes and try to get the highest highscore!
 Features :
 
